@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="fido2" name="FIDO2Applet">
+	<!-- Applet building dependencies -->
+	<property name="JC303" value="ext/sdks/jc303_kit"/>
+
+	<!-- ant-javacard task from javacard.pro -->
+	<get src="https://github.com/martinpaljak/ant-javacard/releases/latest/download/ant-javacard.jar" dest="." skipexisting="true"/>
+	<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+	
+	<!-- All included applets -->
+	<target name="fido2">
+		<javacard jckit="${JC303}">
+			<!-- FIDO2Applet -->
+			<cap output="FIDO2Applet.cap" sources="src/de/krusemal/fido2" >
+				<applet class="de.krusemal.fido2.FIDO2Applet"
+					aid="a0000006472f0001" />
+			</cap>
+		</javacard>
+	</target>
+</project>
